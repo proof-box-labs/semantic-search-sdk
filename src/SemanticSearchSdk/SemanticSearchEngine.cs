@@ -24,7 +24,7 @@ public class SemanticSearchEngine(IEmbeddingGenerator<string, Embedding<float>> 
             .Select(item => new SearchResult(
                 item.Label,
                 item.Content,
-                TensorPrimitives.CosineSimilarity(item.Embedding.Vector.Span, queryEmbedding.Vector.Span)))
+                TensorPrimitives.Dot(item.Embedding.Vector.Span, queryEmbedding.Vector.Span)))
             .OrderByDescending(r => r.Similarity)
             .Take(topK);
     }
