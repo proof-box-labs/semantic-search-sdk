@@ -1,9 +1,17 @@
 using Microsoft.Extensions.AI;
+using Microsoft.Extensions.Configuration;
 using OllamaSharp;
 using SemanticSearchSdk;
 
+var config = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json", optional: false)
+    .Build();
+
+var ollamaUrl = config["Ollama:Url"] ?? throw new InvalidOperationException("Ollama:Url is not configured.");
+var ollamaModel = config["Ollama:Model"] ?? throw new InvalidOperationException("Ollama:Model is not configured.");
+
 IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator =
-    new OllamaApiClient(new Uri("http://localhost:11434"), "all-minilm");
+    new OllamaApiClient(new Uri(ollamaUrl), ollamaModel);
 
 var directory = Directory.GetCurrentDirectory();
 var documents = DocumentLoader.LoadFromDirectory(directory).ToList();
