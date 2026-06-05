@@ -2,7 +2,7 @@
 
 A .NET 8 class library for local semantic search over documents. Drop in `.txt` or `.pdf` files, and query them with natural language — no cloud API required.
 
-Embeddings are generated locally via [Ollama](https://ollama.com) and ranked by cosine similarity using `System.Numerics.Tensors`.
+Embeddings are generated locally via [Ollama](https://ollama.com) and ranked by dot product using `System.Numerics.Tensors` (equivalent to cosine similarity since `all-minilm` outputs unit-normalized vectors).
 
 ## Prerequisites
 
@@ -83,7 +83,7 @@ foreach (var r in results)
 |---|---|
 | `IndexAsync(IEnumerable<(string Label, string Content)>)` | Embeds all documents in one batch and builds the index. Calling again replaces the entire index. |
 | `IndexAsync(IEnumerable<string>)` | Convenience overload — uses each string as both label and content. |
-| `SearchAsync(string query, int topK = 3)` | Returns up to `topK` results ordered by descending cosine similarity. |
+| `SearchAsync(string query, int topK = 3)` | Returns up to `topK` results ordered by descending similarity. |
 
 **`SearchResult`** — `record(string Label, string Content, float Similarity)`
 
@@ -113,6 +113,6 @@ SemanticSearchSdk.sln
 |---|---|
 | OllamaSharp v5.x | Ollama HTTP client — constructs the `IEmbeddingGenerator` |
 | Microsoft.Extensions.AI v10.x | Provider-agnostic embedding abstraction |
-| System.Numerics.Tensors v10.x | Span-based cosine similarity math |
+| System.Numerics.Tensors v10.x | Span-based dot product math for ranking |
 | UglyToad.PdfPig v1.7.x | PDF text extraction in `DocumentLoader` |
 | xUnit v2.5 + coverlet | Test framework and coverage |
