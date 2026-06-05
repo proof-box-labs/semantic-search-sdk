@@ -87,11 +87,26 @@ foreach (var r in results)
 
 **`SearchResult`** — `record(string Label, string Content, float Similarity)`
 
-**`DocumentLoader.LoadFromDirectory(string directory)`** — Reads `.txt` and `.pdf` files (top-level only) from a directory. Each file is split into paragraphs; labels are `filename:paragraphIndex` (e.g. `sample.txt:3`).
+**`DocumentLoader.LoadFromDirectory(string directory)`** — Reads `.txt` and `.pdf` files (top-level only) from a directory. Each file is split on double newlines into paragraphs; labels are `filename:paragraphIndex` (e.g. `sample.txt:3`). PDFs with no blank lines between sections will produce a single chunk.
+
+## Configuration
+
+The console app reads its Ollama endpoint and model from `src/SemanticSearchSdk.App/appsettings.json`:
+
+```json
+{
+  "Ollama": {
+    "Url": "http://localhost:11434",
+    "Model": "all-minilm"
+  }
+}
+```
+
+To switch models or point to a remote Ollama instance, edit this file.
 
 ## Running Tests
 
-Tests use a deterministic `FakeEmbeddingGenerator` and do not require Ollama.
+Tests use a deterministic `FakeEmbeddingGenerator` and **do not require Ollama**.
 
 ```bash
 dotnet test
