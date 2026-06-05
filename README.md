@@ -39,7 +39,7 @@ Ready.
 
 Query: what is deep learning?
 
-[92.3%] sample.txt
+[92.3%] sample.txt:1
 Deep learning is a type of machine learning that uses neural networks with many
 layers to analyze data. It has been responsible for breakthroughs in image...
 ```
@@ -87,7 +87,7 @@ foreach (var r in results)
 
 **`SearchResult`** — `record(string Label, string Content, float Similarity)`
 
-**`DocumentLoader.LoadFromDirectory(string directory)`** — Reads `.txt` and `.pdf` files (top-level only) from a directory. Labels are filenames.
+**`DocumentLoader.LoadFromDirectory(string directory)`** — Reads `.txt` and `.pdf` files (top-level only) from a directory. Each file is split into paragraphs; labels are `filename:paragraphIndex` (e.g. `sample.txt:3`).
 
 ## Running Tests
 
