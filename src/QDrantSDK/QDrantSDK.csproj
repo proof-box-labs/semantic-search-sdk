@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Qdrant.Client" Version="1.19.0" />
+  </ItemGroup>
+
 </Project>
