@@ -1,0 +1,5 @@
+Vector Search:
+
+qdrant instance:
+APIKey:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIiwic3ViamVjdCI6ImFwaS1rZXk6NDYyYWZmNWUtZjNkYy00NjA3LWFlZGEtMDcxZjg3ZjJiNDIxIn0.t3DjUuKLnHVn4VUrAzhGRJIktyAmTT1WxIc4fOl6hhY
+Instance:https://3c4b0134-e2da-4b87-b574-7c67b5fa3d70.eu-west-1-0.aws.cloud.qdrant.io
